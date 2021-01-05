@@ -1,0 +1,38 @@
+type Laptop {
+  id: Int!
+  brand: String!
+  model: String!
+  ram: String!
+  storage: String!
+  display: String!
+  camera: Boolean!
+}
+
+input CreateLaptopInput {
+  brand: String!
+  model: String!
+  ram: String!
+  storage: String!
+  display: String!
+  camera: Boolean!
+}
+
+input UpdateLaptopInput {
+  brand: String
+  model: String
+  ram: String
+  storage: String
+  display: String
+  camera: Boolean
+}
+
+type Query {
+  getAllLaptops: [Laptop!]
+  getLaptop(id: String!): Laptop!
+}
+
+type Mutation {
+  addLaptop(data: CreateLaptopInput!): Laptop
+  updateLaptop(data: UpdateLaptopInput!): Laptop
+  removeLaptop(id: String!): Laptop
+}

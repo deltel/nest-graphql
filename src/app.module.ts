@@ -5,11 +5,12 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
+import { LaptopModule } from './laptop/laptop.module';
 
 @Module({
   imports: [
     GraphQLModule.forRoot({
-      typePaths: [join(__dirname, '/../src/user/user.graphql')],
+      typePaths: [join(__dirname, '/../src/user/user.graphql'), join(__dirname, '/../src/laptop/laptop.graphql')],
       playground: true,
     }),
     TypeOrmModule.forRoot({
@@ -24,6 +25,7 @@ import { join } from 'path';
       logging: true,
     }),
     UserModule,
+    LaptopModule,
   ],
   controllers: [AppController],
   providers: [AppService],
