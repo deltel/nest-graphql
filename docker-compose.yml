@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:12.3
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: nestdb
+    ports:
+      - 5432:5432
+    volumes:
+      - nestpgdata:/var/lib/postgresql/data
+  
+  pgadmin:
+    image: dpage/pgadmin4:4.25
+    restart: unless-stopped
+    environment: 
+      PGADMIN_DEFAULT_EMAIL: admin
+      PGADMIN_DEFAULT_PASSWORD: admin
+    depends_on: 
+      - db
+    ports:
+     - 80:80
+
+volumes:
+  nestpgdata:
