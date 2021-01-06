@@ -22,8 +22,9 @@ export class LaptopResolver {
   }
 
   @Mutation(() => Laptop)
-  async updateLaptop(@Args('data') data: UpdateLaptopInput, @Args('id') id: string) {
-    return await this.laptopService.update(id, data);
+  async updateLaptop(@Args('id') id: string, @Args('data') data: UpdateLaptopInput) {
+    await this.laptopService.update(id, data);
+    return this.laptopService.findOne(id);
   }
   
   @Mutation(() => Laptop)

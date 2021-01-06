@@ -35,6 +35,7 @@ export class LaptopService {
   }
 
   async remove(id: string) {
-    return await this.laptopRepository.delete(parseInt(id, 10));
+    const laptop = await this.laptopRepository.findOne(id);
+    return await this.laptopRepository.remove(laptop);
   }
 }

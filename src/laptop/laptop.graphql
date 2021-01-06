@@ -33,6 +33,6 @@ type Query {
 
 type Mutation {
   addLaptop(data: CreateLaptopInput!): Laptop
-  updateLaptop(data: UpdateLaptopInput!): Laptop
+  updateLaptop(id: String!, data: UpdateLaptopInput!): Laptop
   removeLaptop(id: String!): Laptop
 }
