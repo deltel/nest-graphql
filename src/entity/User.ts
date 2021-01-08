@@ -20,7 +20,7 @@ export class User extends BaseEntity{
 
 }
 
-export class UserInput {
+export class RegisterInput {
     firstname: string;
     lastname: string;
     email: string;

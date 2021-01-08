@@ -6,7 +6,7 @@ type User {
   password: String!
 }
 
-input UserInput {
+input RegisterInput {
   firstname: String!
   lastname: String!
   email: String!
@@ -22,5 +22,6 @@ type Query {
 }
 
 type Mutation {
-  createUser(input: UserInput!): User
+  register(data: RegisterInput!): User
+  login(email: String!, password: String!): User
 }
