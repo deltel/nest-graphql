@@ -12,7 +12,7 @@ export class UserService {
     private readonly userRepository: Repository<User>,
   ) {}
 
-  async findOne(id: string): Promise<User> {
+  async findOne(id: string): Promise<User | undefined> {
     return this.userRepository.findOne(id);
   }
 
@@ -26,20 +26,21 @@ export class UserService {
     return this.userRepository.save(user);
   }
 
-  async login (email: string, password: string): Promise<User | null> {
+  async login (email: string, passwordProvided: string): Promise<any> {
     const user = await this.userRepository.findOne({ email });
 
     if (!user) {
       return null
     }
 
-    const valid = bcrypt.compare(password, user.password);
+    const valid = bcrypt.compare(passwordProvided, user.password);
 
     if (!valid) {
       return null
     }
 
-    return user;
+    const { password, ...result } = user;
+    return result;
 
   }
 }
