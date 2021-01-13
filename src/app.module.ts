@@ -7,13 +7,17 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { LaptopModule } from './laptop/laptop.module';
 import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    AuthModule,
+    ConfigModule.forRoot(),
     GraphQLModule.forRoot({
       typePaths: [join(__dirname, '/../src/user/user.graphql'), join(__dirname, '/../src/laptop/laptop.graphql')],
       playground: true,
     }),
+    LaptopModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -26,8 +30,6 @@ import { AuthModule } from './auth/auth.module';
       logging: true,
     }),
     UserModule,
-    LaptopModule,
-    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
